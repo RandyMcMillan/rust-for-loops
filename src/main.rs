@@ -30,6 +30,7 @@ fn usage() {
     println!("	-h --help");
     println!("");
     println!("	[SUB-COMMANDS]");
+    println!("");
     println!("	0 1 2 3 4 5 6 7 8 9 10 git");
     use std::process;
     process::exit(0);
@@ -42,7 +43,10 @@ fn main() {
     if !args.is_empty() {
     println!("args={:?}",args);
     } else {
-        usage();
+        //usage();
+        //println!("creating help_vector");
+        let help_vector = vec![String::from("-h"), String::from("--help")];
+        system_calls(help_vector);
     }
     system_calls(args.clone());
 }
