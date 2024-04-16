@@ -30,7 +30,14 @@ fn system_calls(args: Vec<String>) {
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let mut args: Vec<String> = env::args().collect();
+
+    if !args.is_empty() {
+        let last_arg = args.pop().unwrap();
+        println!("Last argument: {}", last_arg);
+    } else {
+        println!("No arguments provided.");
+    }
 
     // Access arguments by index (be cautious with potential out-of-bounds)
     if args.len() >= 2 {
@@ -41,5 +48,25 @@ fn main() {
     }
 
     println!("rust-for-loops");
-    system_calls(args);
+    system_calls(args.clone());
+
+    if args.len() >= 2 {
+        let mut args = env::args().skip(1); // Skip the program name
+
+        if let Some(last_arg) = args.next_back() {
+            println!("Last argument: {}", last_arg);
+        } else {
+            println!("No arguments provided.");
+        }
+        if let Some(last_arg) = args.next_back() {
+            println!("Last argument: {}", last_arg);
+        } else {
+            println!("No arguments provided.");
+        }
+        if let Some(last_arg) = args.next_back() {
+            println!("Last argument: {}", last_arg);
+        } else {
+            println!("No arguments provided.");
+        }
+    }
 }
