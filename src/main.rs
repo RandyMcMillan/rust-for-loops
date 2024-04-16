@@ -38,7 +38,9 @@ fn main() {
     println!("Remaining args: {:?}", args);
     //let mut args = env::args().skip(1);
     //println!("args={:?}",args);
-    if !args.is_empty() {} else {}
+    if !args.is_empty() {
+    } else {
+    }
     println!("args={:?}", args);
     system_calls(args.clone());
 }
