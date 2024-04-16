@@ -2,7 +2,7 @@ use std::env;
 fn system_calls(mut args: Vec<String>) {
     if !args.is_empty() {
         println!("system_calls:args={:?}", args);
-        if args.len() > 1 {
+        if args.len() >= 1 {
             println!("args[0]={:?}", args[0]);
             use std::process::Command;
             let mut cmd = Command::new(format!("rust-for-loop-{}", args.remove(0)));
@@ -23,24 +23,19 @@ fn system_calls(mut args: Vec<String>) {
 
 fn usage() {
     println!("Usage:");
-    println!("	rust-for-loops [OPTIONS] <int>");
-    println!("	\n");
-    println!("	rust-for-loops [OPTIONS] <int>");
+    println!("	rust-for-loops [OPTIONS] <int> <int> <int>");
     use std::process;
     process::exit(0);
 }
 
 fn main() {
     let mut args: Vec<String> = env::args().collect();
-    //println!("{:?}", args);
     let app_name = args.remove(0);
-    println!("app_name={}", app_name);
-    println!("Remaining args: {:?}", args);
-    //let mut args = env::args().skip(1);
-    //println!("args={:?}",args);
+    //println!("app_name={}", app_name);
     if !args.is_empty() {
+    println!("args={:?}",args);
     } else {
+        usage();
     }
-    println!("args={:?}", args);
     system_calls(args.clone());
 }
