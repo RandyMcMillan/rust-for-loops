@@ -7,6 +7,6 @@ fn for_loop() {
     println!("sum10 is {sum10}");
 }
 fn main() {
-    println!("rust-for-loop-4");
+    println!("rust-for-loop-10");
     for_loop();
 }
