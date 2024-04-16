@@ -30,14 +30,26 @@ fn system_calls(args: Vec<String>) {
 }
 
 fn main() {
-    let mut args: Vec<String> = env::args().collect();
 
-    if !args.is_empty() {
-        let last_arg = args.pop().unwrap();
-        println!("Last argument: {}", last_arg);
-    } else {
-        println!("No arguments provided.");
-    }
+  let mut my_vec = vec![1, 2, 3, 4];
+  let removed_element = my_vec.remove(0);
+  println!("Removed element: {}", removed_element);
+  println!("Remaining vector: {:?}", my_vec);
+
+    let mut args: Vec<String> = env::args().collect();
+    println!("{:?}",args);
+    let first_element = args.remove(0);
+    println!("first_element={}",first_element);
+  println!("Remaining vector: {:?}", args);
+    //let mut args = env::args().skip(1);
+    //println!("{}",args);
+
+    //if !args.is_empty() {
+    //    let last_arg = args.pop().unwrap();
+    //    println!("Last argument: {}", last_arg);
+    //} else {
+    //    println!("No arguments provided.");
+    //}
 
     // Access arguments by index (be cautious with potential out-of-bounds)
     if args.len() >= 2 {
