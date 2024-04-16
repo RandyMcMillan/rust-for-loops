@@ -1,4 +1,11 @@
-fn for_loop_1() {
+use std::env;
+fn for_loop_1(args:Vec<String>) {
+  if args.len() >= 2 {
+      let first_arg = &args[1];
+      println!("for_loop_1:First argument: {}", first_arg);
+  } else {
+      //println!("Please provide at least one argument.");
+  }
     use std::process::Command;
 
     let mut cmd = Command::new("rust-for-loop-1");
@@ -9,11 +16,29 @@ fn for_loop_1() {
     let _exit_code = cmd.status().expect("Failed to get exit code");
     println!("{}", _exit_code);
 }
-fn system_calls() {
-    for_loop_1();
+fn system_calls(args:Vec<String>) {
+  if args.len() >= 2 {
+      let first_arg = &args[1];
+      println!("system_calls:First argument: {}", first_arg);
+  } else {
+      //println!("Please provide at least one argument.");
+  }
+    for_loop_1(args);
 }
 
 fn main() {
+
+let args: Vec<String> = env::args().collect();
+
+  // Access arguments by index (be cautious with potential out-of-bounds)
+  if args.len() >= 2 {
+      let first_arg = &args[1];
+      println!("First argument: {}", first_arg);
+  } else {
+      //println!("Please provide at least one argument.");
+  }
+
+
     println!("rust-for-loops");
-    system_calls();
+    system_calls(args);
 }
