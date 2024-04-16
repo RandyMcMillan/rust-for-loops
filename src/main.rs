@@ -3,10 +3,10 @@ fn for_loop_1(args: Vec<String>) {
     if args.len() >= 2 {
         let first_arg = &args[1];
         println!("for_loop_1:First argument: {}", first_arg);
-        use std::process::Command;
 
+        use std::process::Command;
         let mut cmd = Command::new(format!("rust-for-loop-{}", first_arg));
-        //let mut cmd = Command::new("ls");
+        cmd.arg("--arg").arg("1");
         let output = cmd.output().expect("Failed to execute command");
         let _stdout = String::from_utf8_lossy(&output.stdout);
         let _stderr = String::from_utf8_lossy(&output.stderr);
@@ -16,35 +16,41 @@ fn for_loop_1(args: Vec<String>) {
         //println!("Please provide at least one argument.");
     }
 }
-fn system_calls(args: Vec<String>) {
+fn system_calls(mut args: Vec<String>) {
     if !args.is_empty() {
         println!("system_calls:args={:?}", args);
-        //let last_arg = args.pop().unwrap();
-        //println!("Last argument: {}", last_arg);
+        if args.len() > 1 {
+            println!("args[0]={:?}", args[0]);
 
-        if args.len() == 1 {
-            println!("args[0]={:?}",args[0]);
+            use std::process::Command;
+            let mut cmd = Command::new(format!("rust-for-loop-{}", args.remove(0)));
+            cmd.arg("4");
+            let output = cmd.output().expect("Failed to execute command");
+            let _stdout = String::from_utf8_lossy(&output.stdout);
+            let _stderr = String::from_utf8_lossy(&output.stderr);
+            let _exit_code = cmd.status().expect("Failed to get exit code");
+            println!("{}", _exit_code);
             use std::process;
             process::exit(0);
         }
         if args.len() == 2 {
-            println!("args[0]={:?}",args[0]);
-            println!("args[1]={:?}",args[1]);
+            println!("args[0]={:?}", args[0]);
+            println!("args[1]={:?}", args[1]);
             use std::process;
             process::exit(0);
         }
         if args.len() == 3 {
-            println!("args[0]={:?}",args[0]);
-            println!("args[1]={:?}",args[1]);
-            println!("args[2]={:?}",args[2]);
+            println!("args[0]={:?}", args[0]);
+            println!("args[1]={:?}", args[1]);
+            println!("args[2]={:?}", args[2]);
             use std::process;
             process::exit(0);
         }
         if args.len() == 4 {
-            println!("args[0]={:?}",args[0]);
-            println!("args[1]={:?}",args[1]);
-            println!("args[2]={:?}",args[2]);
-            println!("args[3]={:?}",args[3]);
+            println!("args[0]={:?}", args[0]);
+            println!("args[1]={:?}", args[1]);
+            println!("args[2]={:?}", args[2]);
+            println!("args[3]={:?}", args[3]);
             use std::process;
             process::exit(0);
         }
